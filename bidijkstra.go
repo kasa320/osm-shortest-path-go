@@ -6,11 +6,11 @@ import (
 )
 
 type Metrics struct {
-	Relaxations int   // 緩和回数
-	Expansions  int   // ノード展開数
-	PushCount   int   // PQ push数
-	MaxHeapSize int   // 最大ヒープサイズ
-	ElapsedNs   int64 // 実行時間(ns)
+	Relaxations int     // 緩和回数
+	Expansions  int     // ノード展開数
+	PushCount   int     // PQ push数
+	MaxHeapSize int     // 最大ヒープサイズ
+	ElapsedNs   int64   // 実行時間(ns)
 	Dist        float64 // 始点から終点までの最短経路長（実装の正しさ検証用）
 }
 
@@ -43,8 +43,8 @@ func BiDijkstraPQ(startID int, goalID int, graph Graph) *Metrics {
 		}
 
 		// ===== pqueue1 =====
-		selectedNode := pqueue1.pop()                    // 最小のノード
-		if selectedNode.dist <= dist1[selectedNode.id] { // 講義とは異なり重複pushなため古いエントリは展開しない（前後を1周回で必ず進めるためcontinueは使わない）
+		selectedNode := pqueue1.pop() // 最小のノード
+		if selectedNode.dist <= dist1[selectedNode.id] {
 			metrics.Expansions++
 
 			// 見つかったノードのすべての隣接ノードについて、コストを更新 & PQに追加
@@ -68,8 +68,8 @@ func BiDijkstraPQ(startID int, goalID int, graph Graph) *Metrics {
 		}
 
 		// ===== pqueue2 =====
-		selectedNode = pqueue2.pop()                     // 最小のノード
-		if selectedNode.dist <= dist2[selectedNode.id] { // 講義とは異なり重複pushなため古いエントリは展開しない（前後を1周回で必ず進めるためcontinueは使わない）
+		selectedNode = pqueue2.pop() // 最小のノード
+		if selectedNode.dist <= dist2[selectedNode.id] {
 			metrics.Expansions++
 
 			// 見つかったノードのすべての隣接ノードについて、コストを更新 & PQに追加

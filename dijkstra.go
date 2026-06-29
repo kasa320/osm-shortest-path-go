@@ -98,7 +98,7 @@ func DijkstraPQ(startID int, goalID int, graph Graph) *Metrics {
 	for len(pqueue.items) > 0 {
 		selectedNode := pqueue.pop() // 最小のノード
 
-		if selectedNode.dist > dist[selectedNode.id] { // 講義とは異なり重複pushなため古いエントリを捨てる
+		if selectedNode.dist > dist[selectedNode.id] {
 			continue
 		}
 		metrics.Expansions++

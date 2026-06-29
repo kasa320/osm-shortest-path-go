@@ -28,7 +28,7 @@ func Astar(startID int, goalID int, graph Graph) *Metrics {
 	for len(pqueue.items) > 0 {
 		selectedNode := pqueue.pop() // 最小のノード
 		h := graph.distance(selectedNode.id, goalID)
-		if selectedNode.dist > dist[selectedNode.id]+h { // 講義とは異なり重複pushなため古いエントリを捨てる
+		if selectedNode.dist > dist[selectedNode.id]+h {
 			continue
 		}
 		metrics.Expansions++
